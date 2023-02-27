@@ -21,17 +21,19 @@ async def send_welcome(message: types.Message):
     await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
 
 
+@dp.message_handler(commands=['backup_cur'])
+async def backup(message: types.Message):
+    subprocess.call("rm /home/ureshipan/Yandex.Disk/Color_Study/Backup/*", shell=True) #Чистим папку
+    subprocess.call("cp -a /home/ureshipan/Yandex.Disk/Color_Study/Current_Run/* /home/ureshipan/Yandex.Disk/Color_Study/Backup/", shell=True) #Кидаем текущую версию в бек
+    #subprocess.call("cp /home/ureshipan/Yandex.Disk/Color_Study/Backup/* /home/ureshipan/Yandex.Disk/Color_Study/Current_Run", shell=True) #Возвращаем из бека копию в лайв
+    #Буквально пишем баш команды через интерфейс этой библы
+
+
+
 # Пример функции, которая принимает любой текст и отправляет его же собеседнику
 @dp.message_handler()
 async def echo(message: types.Message):
     await message.answer(message.text)
-
-@dp.message_handler(commands=['/backup_cur'])
-async def backup(message: types.Message):
-    subprocess.call("rm Backup/*", shell=True) #Чистим папку
-    subprocess.call("mv Current_Run/* Backup", shell=True) #Кидаем текущую версию в бек
-    subprocess.call("cp Backup/* Current_Run", shell=True) #Возвращаем из бека копию в лайв
-    #Буквально пишем баш команды через интерфейс этой библы
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
