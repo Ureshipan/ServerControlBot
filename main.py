@@ -11,6 +11,7 @@ bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
 
+# Пример функции, которая обрабатывает команды
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     """
@@ -19,11 +20,9 @@ async def send_welcome(message: types.Message):
     await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
 
 
+# Пример функции, которая принимает любой текст и отправляет его же собеседнику
 @dp.message_handler()
 async def echo(message: types.Message):
-    # old style:
-    # await bot.send_message(message.chat.id, message.text)
-
     await message.answer(message.text)
 
 
