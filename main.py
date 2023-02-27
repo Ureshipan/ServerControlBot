@@ -23,9 +23,8 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler(commands=['backup_cur'])
 async def backup(message: types.Message):
-    subprocess.call("rm /home/ureshipan/Yandex.Disk/Color_Study/Backup/*", shell=True) #Чистим папку
+    subprocess.call("rm -rf /home/ureshipan/Yandex.Disk/Color_Study/Backup/*", shell=True) #Чистим папку
     subprocess.call("cp -a /home/ureshipan/Yandex.Disk/Color_Study/Current_Run/* /home/ureshipan/Yandex.Disk/Color_Study/Backup/", shell=True) #Кидаем текущую версию в бек
-    #subprocess.call("cp /home/ureshipan/Yandex.Disk/Color_Study/Backup/* /home/ureshipan/Yandex.Disk/Color_Study/Current_Run", shell=True) #Возвращаем из бека копию в лайв
     #Буквально пишем баш команды через интерфейс этой библы
 
 
