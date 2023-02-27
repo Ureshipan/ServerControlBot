@@ -28,8 +28,9 @@ async def echo(message: types.Message):
 
 @dp.message_handler(commands=['/backup_cur'])
 async def backup(message: types.Message):
-    subprocess.call("mv Current_Run/* Backup", shell=True)
-    subprocess.call("cp Backup/* Current_Run", shell=True)
+    subprocess.call("rm Backup/*", shell=True) #Чистим папку
+    subprocess.call("mv Current_Run/* Backup", shell=True) #Кидаем текущую версию в бек
+    subprocess.call("cp Backup/* Current_Run", shell=True) #Возвращаем из бека копию в лайв
     #Буквально пишем баш команды через интерфейс этой библы
 
 if __name__ == '__main__':
