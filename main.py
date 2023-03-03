@@ -19,6 +19,9 @@ async def send_welcome(message: types.Message):
     """
     This handler will be called when user sends `/start` or `/help` command
     """
+    if message.text == '/start':
+      subprocess.Popen(['/usr/bin/python3', BASE_PATH + "/Current_Run/main.py"])
+
     await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
 
 
