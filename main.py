@@ -31,6 +31,10 @@ async def backup(message: types.Message):
     subprocess.call("cp -a " + BASE_PATH + "/Current_Run/* " + BASE_PATH + "/Backup/", shell=True) #Кидаем текущую версию в бек
     #Буквально пишем баш команды через интерфейс этой библы
 
+@dp.message_handler(commands=['update'])
+async def update(message: types.Message):
+    subprocess.call("rm -rf " + BASE_PATH + "/Newest/*", shell=True) #Чистим папку
+    subprocess.call("cp -a " + BASE_PATH + "/Newest/* " + BASE_PATH + "/Current_Run/", shell=True) #Обновляем текущую версию в Current run
 
 
 # Пример функции, которая принимает любой текст и отправляет его же собеседнику
