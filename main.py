@@ -33,7 +33,7 @@ async def backup(message: types.Message):
 
 @dp.message_handler(commands=['update'])
 async def update(message: types.Message):
-    subprocess.call("rm -rf " + BASE_PATH + "/Newest/*", shell=True) #Чистим папку
+    subprocess.call("rm -rf " + BASE_PATH + "/Current_Run/*", shell=True) #Чистим папку
     subprocess.call("cp -a " + BASE_PATH + "/Newest/* " + BASE_PATH + "/Current_Run/", shell=True) #Обновляем текущую версию в Current run
 
 
